@@ -30,3 +30,27 @@
     transform: rotate(360deg);
   }
 }
+
+/*NAV*/
+nav{
+  position: fixed;
+z-index: 99;
+}
+.nav-wrapper{
+  background-color: #333
+}
+#nav-mobile{
+  padding: 0 2rem;
+}
+#sidenav-overlay{
+  background-color: transparent
+}
+.input-field{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    padding: 0 1rem;
+}
+.select-wrapper{
+  width: 100%
+}

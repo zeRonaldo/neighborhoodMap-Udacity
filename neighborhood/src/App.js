@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
 import './styles/css/App.css';
-import SideNavMenu from './templates/SideNavMenu';
-import MapView from './templates/MapView'
+
+import Main from './templates/Main'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <SideNavMenu></SideNavMenu>
-        <MapView></MapView>
-      </div>
+      <Main/>
     );
   }
 }
