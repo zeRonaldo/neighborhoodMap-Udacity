@@ -25,18 +25,19 @@ const MyMapComponent = compose(
   withGoogleMap
 )(props => (
   <GoogleMap defaultZoom={13} defaultCenter={{ lat: -7.1494901, lng: -34.885884 }}  defaultOptions={{styles : mapStyle}}>
-    {props.isMarkerShown && (
+    {props.isMarkerShown ? (
       props.places.map( place => {
             return  <MarkerWithLabel
             position={place.location }
             labelAnchor={this}
+
             labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}
           >
             <div></div>
           </MarkerWithLabel>
       })
        
-    )}
+    ):(<div></div>)}
   </GoogleMap>
 ));
 

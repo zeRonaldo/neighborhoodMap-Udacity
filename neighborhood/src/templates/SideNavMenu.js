@@ -32,11 +32,11 @@ class SideNavMenu extends Component {
                 
                
             <SideNavItem divider />  
-            <Input s={12} type='select' label="Filter by" defaultValue='0'>
-              <option value='1'>All</option>
-              <option value='1'>Bars and Parties</option>
-              <option value='2'>Restaurants</option>
-              <option value='3'>Landscapes</option>
+            <Input s={12} type='select' label="Filter by" defaultValue='0' onChange={ (e) => {console.log(e);this.props.filterCategory(e.target.value)}}>
+              <option value='all'>All</option>
+              <option value='bars'>Bars and Parties</option>
+              <option value='restaurants'>Restaurants</option>
+              <option value='landscape'>Landscapes</option>
             </Input>
                
             <SideNavItem divider /> 

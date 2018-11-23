@@ -12,7 +12,7 @@ export async function  getAllPlaces() {
             all= [...all, {
                 id: place.venue.id,
                 name: place.venue.name,
-                category: 'bar',
+                category: 'bars',
                 locationTxt: place.venue.location.address,
                 neighborhood: place.venue.location.neighborhood,
                 location:{
@@ -27,7 +27,7 @@ export async function  getAllPlaces() {
             all= [...all, {
                 id: place.venue.id,
                 name: place.venue.name,
-                category: 'restaurant',
+                category: 'restaurants',
                 locationTxt: place.venue.location.address,
                 neighborhood: place.venue.location.neighborhood,
                 location:{
@@ -42,7 +42,7 @@ export async function  getAllPlaces() {
             all= [...all, {
                 id: place.venue.id,
                 name: place.venue.name,
-                category: 'landscape',
+                category: 'landscapes',
                 locationTxt: place.venue.location.address,
                 neighborhood: place.venue.location.neighborhood,
                 location:{

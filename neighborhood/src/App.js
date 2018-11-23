@@ -9,6 +9,7 @@ class App extends Component {
     places: [
       
     ],
+    shownPlaces: [],
     error: false,
     errorMsg: '',
   }
@@ -16,9 +17,10 @@ class App extends Component {
     await getAllPlaces().then( result => {
       result.map( place => {
         this.setState({
-          places: [...this.state.places, place]
+          places: [...this.state.places, place],
+          shownPlaces: [...this.state.places, place]
         })
-      })      
+      })  
     }).catch( (e) => {
       this.setState({
         error: true,
@@ -27,13 +29,17 @@ class App extends Component {
     })
   }
 
-  filterPlaceByCateg
+  filterPlaceByCategory = (category) => {
+    this.setState({
+      shownPlaces: this.state.places.filter(place => place.category === category)
+    })
+  }
 
   render() {
     return (
       <div className="App">
-        <SideNavMenu places={this.state.places}></SideNavMenu>
-        <MapView places={this.state.places} isMarkerShown></MapView>
+        <SideNavMenu places={this.state.shownPlaces} filterCategory={this.filterPlaceByCategory}></SideNavMenu>
+        <MapView places={this.state.shownPlaces} isMarkerShown></MapView>
         {this.state.error ?
           (
             <div>{this.state.errorMsg}</div>
