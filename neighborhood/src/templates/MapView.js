@@ -1,3 +1,5 @@
+/*global google*/
+
 import React from 'react';
 import { compose, withProps } from "recompose";
 import mapStyle from '../styles/mapStyle'
@@ -7,6 +9,7 @@ import {
   GoogleMap,
 } from "react-google-maps";
 import { MarkerWithLabel } from "react-google-maps/lib/components/addons/MarkerWithLabel";
+import MapMarkers from './MapMarkers';
 
 const MyMapComponent = compose(
   withProps({
@@ -30,10 +33,10 @@ const MyMapComponent = compose(
             return  <MarkerWithLabel
             position={place.location }
             labelAnchor={this}
-
+            labelAnchor={new google.maps.Point(0, 0)}
             labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}
           >
-            <div></div>
+            <MapMarkers place={place}></MapMarkers>
           </MarkerWithLabel>
       })
        

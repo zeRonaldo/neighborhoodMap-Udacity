@@ -18,25 +18,17 @@ class SideNavMenu extends Component {
               </nav>}
             options={{ closeOnClick: false }}
         >
-            <SideNavItem userView
-                user={{
-                background: 'img/office.jpg',
-                image: 'img/yuna.jpg',
-                name: 'Cool Places in My City',
-                email: 'jdandturk@gmail.com'
-                }}
-            />
-           
             
-                  <Input s={12} label="Search..." validate><Icon>search</Icon></Input>
+
+                  <Input s={12} label="Search..."  value={this.props.query} onChange={event => {this.props.searchPlace(event.target.value)}} ><Icon>search</Icon></Input>
                 
                
             <SideNavItem divider />  
-            <Input s={12} type='select' label="Filter by" defaultValue='0' onChange={ (e) => {console.log(e);this.props.filterCategory(e.target.value)}}>
+            <Input s={12} type='select' label="Filter by" defaultValue='0' onChange={ (e) => {this.props.filterCategory(e.target.value)}}>
               <option value='all'>All</option>
               <option value='bars'>Bars and Parties</option>
               <option value='restaurants'>Restaurants</option>
-              <option value='landscape'>Landscapes</option>
+              <option value='landscapes'>Landscapes</option>
             </Input>
                
             <SideNavItem divider /> 

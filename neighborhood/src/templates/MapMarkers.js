@@ -1,25 +1,20 @@
-import React, { Component } from 'react';
+/* global google*/
+ import React, { Component } from 'react';
+ import PropTypes from 'prop-types';
  import { compose } from "recompose";
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap
-} from "react-google-maps";
-import { MarkerWithLabel } from "react-google-maps/lib/components/addons/MarkerWithLabel";
 
-const MapMarkers = compose(
-  withScriptjs,
-  withGoogleMap
-)(props =>
-
-    <MarkerWithLabel
-      position={props.place.location }
-      
-      labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}
-    >
-      <div>{props.place.name}</div>
-    </MarkerWithLabel>
+const MapMarkers = compose()(props =>
+(
+  <div>
+    <h3>{props.place.name}</h3>
+    <p>{props.place.address}</p>
+  </div>
+)
+   
 
 );
   
+MapMarkers.propTypes = {
+  place: PropTypes.element.isRequired
+}
   export default MapMarkers;
