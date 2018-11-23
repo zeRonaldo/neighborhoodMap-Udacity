@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {SideNav,SideNavItem,Input,Icon} from 'react-materialize';
-import Logo from '../res/logo.png'
+import Logo from '../res/logo.png';
+import ListOfPlaces from './ListOfPlaces'
 
 class SideNavMenu extends Component {
     render() {
@@ -36,8 +37,11 @@ class SideNavMenu extends Component {
               <option value='1'>Bars and Parties</option>
               <option value='2'>Restaurants</option>
               <option value='3'>Landscapes</option>
-              <option value='4'>Stores</option>
             </Input>
+               
+            <SideNavItem divider /> 
+
+            <ListOfPlaces places={this.props.places}></ListOfPlaces>
             
         </SideNav>
       )};

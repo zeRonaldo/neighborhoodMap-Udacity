@@ -6,7 +6,7 @@ import {
   withGoogleMap,
   GoogleMap,
 } from "react-google-maps";
-
+import { MarkerWithLabel } from "react-google-maps/lib/components/addons/MarkerWithLabel";
 
 const MyMapComponent = compose(
   withProps({
@@ -26,7 +26,16 @@ const MyMapComponent = compose(
 )(props => (
   <GoogleMap defaultZoom={13} defaultCenter={{ lat: -7.1494901, lng: -34.885884 }}  defaultOptions={{styles : mapStyle}}>
     {props.isMarkerShown && (
-      <div></div>
+      props.places.map( place => {
+            return  <MarkerWithLabel
+            position={place.location }
+            labelAnchor={this}
+            labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}
+          >
+            <div></div>
+          </MarkerWithLabel>
+      })
+       
     )}
   </GoogleMap>
 ));
