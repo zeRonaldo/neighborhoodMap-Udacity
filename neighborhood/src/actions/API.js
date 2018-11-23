@@ -6,6 +6,6 @@ const headers = {
 }
 
 export const getAllPlaces = () => 
-    fetch(`${api}/users/523939690/lists/?${apiID}&${apiSecret}&v=20181123`, {headers})
+    fetch(`${api}/lists/5bf72eb082a750003958c054?${apiID}&${apiSecret}&v=20181123`, {headers})
         .then(res => res.json())
-        .then(data => data)
+        .then(data => data.response.list.listItems)
