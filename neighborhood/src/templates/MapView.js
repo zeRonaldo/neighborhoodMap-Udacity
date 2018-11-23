@@ -1,5 +1,6 @@
 import React from 'react';
 import { compose, withProps } from "recompose";
+import mapStyle from '../styles/mapStyle'
 import {
   withScriptjs,
   withGoogleMap,
@@ -15,7 +16,7 @@ const MyMapComponent = compose(
      * The key "AIzaSyBkNaAGLEVq0YLQMi-PYEMabFeREadYe1Q" can be ONLY used in this sandbox (no forked).
      */
     googleMapURL:
-      "https://maps.googleapis.com/maps/api/js?key=AIzaSyBlFvnsTjvVrSj_0gpJ-Ss_71XdZgVf6vQ&v=3.exp&libraries=geometry,drawing,places",
+      "https://maps.googleapis.com/maps/api/js?key=AIzaSyDolgPQoZAEkNM9OOmUNuf0m6gQB8nCVIM&v=3.exp&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `100vh` }} />,
     mapElement: <div style={{ height: `100%` }} />
@@ -23,7 +24,7 @@ const MyMapComponent = compose(
   withScriptjs,
   withGoogleMap
 )(props => (
-  <GoogleMap defaultZoom={12} defaultCenter={{ lat: -7.1494901, lng: -34.885884 }} >
+  <GoogleMap defaultZoom={13} defaultCenter={{ lat: -7.1494901, lng: -34.885884 }}  defaultOptions={{styles : mapStyle}}>
     {props.isMarkerShown && (
       <div></div>
     )}

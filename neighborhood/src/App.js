@@ -1,13 +1,26 @@
 import React, { Component } from 'react';
-
 import './styles/css/App.css';
-
-import Main from './templates/Main'
+import SideNavMenu from './templates/SideNavMenu';
+import MapView from './templates/MapView'
+import {getAllPlaces} from './actions/API'
 
 class App extends Component {
+  state = {
+    places: [
+      
+    ]
+  }
+  componentDidMount(){
+    getAllPlaces().then( result => {
+      console.log(result);
+    });
+  }
   render() {
     return (
-      <Main/>
+      <div className="App">
+        <SideNavMenu></SideNavMenu>
+        <MapView></MapView>
+      </div>
     );
   }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {SideNav,SideNavItem,Input,Icon} from 'react-materialize';
-// import Logo from '../res/logo.png'
+import Logo from '../res/logo.png'
 
 class SideNavMenu extends Component {
     render() {
@@ -11,7 +11,7 @@ class SideNavMenu extends Component {
                   {/* <Link to="/" clasName="brand-logo"><img src={Logo}></img></Link> */}
                   <ul id="nav-mobile" className="left">
                     <li data-target="slide-out" className="sidenav-trigger"><Icon>dehaze</Icon></li>
-                    
+                    <a href="#" className="brand-logo center">I <img src={Logo} alt=""></img> Jampa</a>
                   </ul>
                 </div>
               </nav>}
