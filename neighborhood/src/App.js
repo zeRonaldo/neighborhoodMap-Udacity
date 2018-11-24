@@ -91,11 +91,11 @@ class App extends Component {
     if(loading === true){
       content = <div className="loading-screen">
                     <div><img src={Logo} alt="heart logo" className="logo"></img></div>
-                  <div class="container loader1">
-                    <div class="item"></div>
-                    <div class="item"></div>
-                    <div class="item"></div>
-                    <div class="item"></div>
+                  <div className="container loader1">
+                    <div className="item"></div>
+                    <div className="item"></div>
+                    <div className="item"></div>
+                    <div className="item"></div>
                   </div>
                   <div className="wrapper">
                     <h2>Carregando as localizações</h2>
