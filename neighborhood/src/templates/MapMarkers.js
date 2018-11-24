@@ -1,6 +1,6 @@
-
+//Libs
  import React from 'react';
-
+ import PropTypes from 'prop-types';
  import { compose } from "recompose";
 
 const MapMarkers = compose()(props =>
@@ -12,5 +12,7 @@ const MapMarkers = compose()(props =>
 )
 );
   
-
+MapMarkers.propTypes = {
+  place: PropTypes.object.isRequired
+}
   export default MapMarkers;

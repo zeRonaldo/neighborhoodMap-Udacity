@@ -1,17 +1,21 @@
-import React, { Component } from 'react';
+//Libs
+import React from 'react';
+import PropTypes from 'prop-types';
+import { compose } from "recompose";
 import {SideNavItem} from 'react-materialize';
 
-
-class ListOfPlaces extends Component {
-    render() {
-        return (
+const ListOfPlaces = compose()(props =>
+(
           <div className="list">
-                {this.props.places.map( place => {
+                {props.places.map( place => {
                     return  <SideNavItem key={place.id}>{place.name}</SideNavItem>
                 })}
                 
           </div>
-        )};
+)
+);
+   
+ListOfPlaces.propTypes = {
+    places: PropTypes.array.isRequired
   }
-  
-  export default ListOfPlaces;
+    export default ListOfPlaces;
