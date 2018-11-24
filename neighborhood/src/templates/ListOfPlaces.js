@@ -8,7 +8,7 @@ const ListOfPlaces = compose()(props =>
 (
           <div className="list">
                 {props.places.map( place => {
-                    return  <SideNavItem key={place.id}>{place.name}</SideNavItem>
+                    return  <SideNavItem key={place.id} onClick={() => props.showInfoWindow(place.id)}>{place.name}</SideNavItem>
                 })}
                 
           </div>

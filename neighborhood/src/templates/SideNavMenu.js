@@ -7,6 +7,8 @@ import {SideNav,SideNavItem,Input,Icon} from 'react-materialize';
 import Logo from '../res/logo.png';
 import ListOfPlaces from './ListOfPlaces';
 
+
+//This component uses a sidenav to organize all the places and filtering components
 const SideNavMenu = compose() ( props =>
 (
     <SideNav
@@ -21,11 +23,15 @@ const SideNavMenu = compose() ( props =>
         options={{ closeOnClick: false }}
       >
         
-        {/* SEARCH-BAR */}
+        {/* SEARCH-BAR :
+            controlled component Input that sends the query down to our main component uses the on change and event
+        */}
         <Input s={12} label="Search..."  value={props.query} onChange={event => {props.searchPlace(event.target.value)}} ><Icon>search</Icon></Input>  
         <SideNavItem divider />  
         
-        {/* CATEGORY-SELECT */}
+        {/* CATEGORY-SELECT 
+            controlled component as a select dropdown that filters the places shown by category
+        */}
         <Input s={12} type='select' label="Filter by" defaultValue='0' onChange={ (e) => {props.filterCategory(e.target.value)}}>
           <option value='all'>All</option>
           <option value='bars'>Bares e festas</option>
@@ -34,8 +40,10 @@ const SideNavMenu = compose() ( props =>
         </Input>
         <SideNavItem divider /> 
           
-        {/* LIST OF PLACES */}
-        <ListOfPlaces places={props.places}></ListOfPlaces>
+        {/* LIST OF PLACES 
+            controlled component that features all the places being shown currently
+            */}
+        <ListOfPlaces places={props.places} showInfoWindow={props.showInfoWindow}></ListOfPlaces>
         
     </SideNav>
 )

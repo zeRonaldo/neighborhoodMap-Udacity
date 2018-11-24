@@ -15,6 +15,8 @@ export async function  getAllPlaces() {
                 category: ['bars'],
                 locationTxt: place.venue.location.address,
                 neighborhood: place.venue.location.neighborhood,
+                photo: place.photo.prefix+'250x250'+place.photo.suffix,
+                photographer: place.photo.user.firstName,
                 location:{
                   lat: place.venue.location.lat,
                   lng: place.venue.location.lng
@@ -30,6 +32,8 @@ export async function  getAllPlaces() {
                 category: ['restaurants'],
                 locationTxt: place.venue.location.address,
                 neighborhood: place.venue.location.neighborhood,
+                photo: place.photo.prefix+'250x250'+place.photo.suffix,
+                photographer: place.photo.user.firstName,
                 location:{
                   lat: place.venue.location.lat,
                   lng: place.venue.location.lng
@@ -45,6 +49,8 @@ export async function  getAllPlaces() {
                 category: ['landscapes'],
                 locationTxt: place.venue.location.address,
                 neighborhood: place.venue.location.neighborhood,
+                photo: place.photo.prefix+'250x250'+place.photo.suffix,
+                photographer: place.photo.user.firstName,
                 location:{
                   lat: place.venue.location.lat,
                   lng: place.venue.location.lng
@@ -67,7 +73,7 @@ export const getAll = () =>
 export const getAllBars = () => 
     fetch(`${api}/lists/5bf72eb082a750003958c054?${apiID}&${apiSecret}&v=20181123`, {headers})
         .then(res => res.json())
-        .then(data => data.response.list.listItems.items)
+        .then(data => {return data.response.list.listItems.items})
 
 export const getAllRestaurant = () =>
     fetch(`${api}/lists/5bf72fe10d173f002cce56b5?${apiID}&${apiSecret}&v=20181123`, {headers})
@@ -79,6 +85,13 @@ export const getAllLandscape = () =>
     .then(res => res.json())
     .then(data => data.response.list.listItems.items)
 
+
+export const getPlace = (id) => 
+    fetch(`${api}/venues/${id}?${apiID}&${apiSecret}&v=20181123`, {headers})
+    .then(res => res.json())
+    .then(data => {
+        console.log(data.response)
+    })
 export const addToAll = (results) =>{
     let list= [];
     results.forEach(place => {

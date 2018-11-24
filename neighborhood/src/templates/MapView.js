@@ -1,5 +1,4 @@
-/*global google*/
-
+/*global google */
 import React from 'react';
 import { compose, withProps } from "recompose";
 import mapStyle from '../styles/mapStyle'
@@ -7,8 +6,8 @@ import {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
+  Marker
 } from "react-google-maps";
-import { MarkerWithLabel } from "react-google-maps/lib/components/addons/MarkerWithLabel";
 import MapMarkers from './MapMarkers';
 
 const MyMapComponent = compose(
@@ -30,14 +29,16 @@ const MyMapComponent = compose(
   <GoogleMap defaultZoom={13} defaultCenter={{ lat: -7.1494901, lng: -34.885884 }}  defaultOptions={{styles : mapStyle}}>
     {props.isMarkerShown ? (
       props.places.map( place => {
-            return  <MarkerWithLabel
+            return  <Marker
             position={place.location }
-            labelAnchor={new google.maps.Point(0, 0)}
-            labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}
             key={place.id}
+            animation={google.maps.Animation.Drop}
+            onClick={() => {
+              console.log(place.photographer)
+              props.showInfoWindow(place.id)}}
           >
-            <MapMarkers place={place}></MapMarkers>
-          </MarkerWithLabel>
+            <MapMarkers place={place} showInfo={() => props.showInfoWindow} infoOpened={props.infoOpened} ></MapMarkers>
+          </Marker>
       })
        
     ):(<div></div>)}

@@ -3,40 +3,30 @@ import './styles/css/App.css';
 import SideNavMenu from './templates/SideNavMenu';
 import MapView from './templates/MapView';
 import {getAllPlaces} from './actions/API';
-import escapeRegExp from 'escape-string-regexp';
 import Logo from './res/logo.png';
 
 class App extends Component {
   state = {
-    loading: true,
-    places: [
-      
-    ],
+    isLoading: true,
+    hasError: false,
+    places: [],
     shownPlaces: [],
     query: '',
-    error: false,
     errorMsg: '',
+    infoWindow: '',
+  }
 
-  }
-  componentWillMount () {
-    this.setState({
-      loading:true
-    })
-  }
-  async componentDidMount(){
+   componentDidMount(){
    
-    await getAllPlaces().then( result => {
+     getAllPlaces().then( result => {
         this.setState({
+          isLoading: false,
           places: result,
           shownPlaces: result
         }) 
-    }).then(
+    }).catch( (e) => {
       this.setState({
-        loading: false
-      })
-    ).catch( (e) => {
-      this.setState({
-        error: true
+        hasError: true
       })
     })
   }
@@ -62,7 +52,11 @@ class App extends Component {
     
   }
 
+  /*
+      Function that receives the query from a controlled input on the sidenavmenu and filter the original places
+    */
   searchPlaceByName = (query) => {
+    
     if(query === ''){
       this.resetPlaces();
       this.setState({
@@ -70,25 +64,35 @@ class App extends Component {
       })
       
     }else{
-      let match = new RegExp(escapeRegExp(this.state.query), 'i')
       this.setState({
         query : query,
-        shownPlaces: this.state.shownPlaces.filter( place => match.test(place.name))
+        shownPlaces: this.state.shownPlaces.filter( place => place.name.toUpperCase().includes(query.toUpperCase()))
 
       })
     }
   }
-
+ 
+  /*
+        Shorthand function to reset the places to the initial list
+    */
   resetPlaces = () => {
+   
     this.setState({
       shownPlaces:this.state.places
     });
   }
+
+  showInfoWindow = (key) => {
+    this.setState({
+      infoWindow: key
+    })
+  }
+
   render() {
-    const {error,loading, shownPlaces, query} = this.state;
-    const {filterPlaceByCategory, searchPlaceByName} = this;
+    const {hasError,isLoading, shownPlaces, query, infoWindow} = this.state;
+    const {filterPlaceByCategory, searchPlaceByName,showInfoWindow} = this;
     let content='';
-    if(loading === true){
+    if(isLoading){
       content = <div className="loading-screen">
                     <div><img src={Logo} alt="heart logo" className="logo"></img></div>
                   <div className="container loader1">
@@ -102,12 +106,12 @@ class App extends Component {
                   </div>
                 </div>
     }else{
-      if(error === true){
+      if(hasError){
         content = <div className='error-screen'><h2>Malditos gremlins da internet!</h2><p>Não foi possível carregar o conteúdo, Tente novamente mais tarde</p></div>
       }else{
         content = <div>
-              <SideNavMenu places={shownPlaces} filterCategory={filterPlaceByCategory} searchPlace={searchPlaceByName} query={query}></SideNavMenu>
-              <MapView places={shownPlaces} isMarkerShown></MapView>
+              <SideNavMenu places={shownPlaces} filterCategory={filterPlaceByCategory} searchPlace={searchPlaceByName} query={query} showInfoWindow={showInfoWindow}></SideNavMenu>
+              <MapView places={shownPlaces} infoOpened={infoWindow} showInfoWindow={showInfoWindow} isMarkerShown></MapView>
             </div>
       }
     }
