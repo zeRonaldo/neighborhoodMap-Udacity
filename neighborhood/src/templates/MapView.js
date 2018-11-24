@@ -32,9 +32,9 @@ const MyMapComponent = compose(
       props.places.map( place => {
             return  <MarkerWithLabel
             position={place.location }
-            labelAnchor={this}
             labelAnchor={new google.maps.Point(0, 0)}
             labelStyle={{backgroundColor: "yellow", fontSize: "32px", padding: "16px"}}
+            key={place.id}
           >
             <MapMarkers place={place}></MapMarkers>
           </MarkerWithLabel>

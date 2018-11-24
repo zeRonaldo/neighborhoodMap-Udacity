@@ -63,3 +63,62 @@ nav .brand-logo.center{
   max-height: 32px;
   margin: 5px;
 }
+
+/*LOADER*/
+.loading-screen{
+  background: #333;
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+}
+.item {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+}
+
+
+/* loader 1 */
+
+.loader1 .item {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0 5px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: .4;
+  animation: load 1s ease-out 0s infinite alternate;
+  /* transtion:opacity 1s ease-out;*/
+}
+
+.loader1 .item:nth-child(2) {
+  animation-delay: -.25s;
+}
+
+.loader1 .item:nth-child(3) {
+  animation-delay: -.5s;
+}
+
+.loader1 .item:nth-child(4) {
+  animation-delay: -.75s;
+}
+
+@keyframes load {
+  0% {
+    opacity: .4;
+  }
+  33% {
+    opacity: .4;
+  }
+  66% {
+    opacity: .4;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}

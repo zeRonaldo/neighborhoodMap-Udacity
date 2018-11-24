@@ -7,7 +7,7 @@ class ListOfPlaces extends Component {
         return (
           <div className="list">
                 {this.props.places.map( place => {
-                    return  <SideNavItem >{place.name}</SideNavItem>
+                    return  <SideNavItem key={place.id}>{place.name}</SideNavItem>
                 })}
                 
           </div>

@@ -12,7 +12,7 @@ class SideNavMenu extends Component {
                   {/* <Link to="/" clasName="brand-logo"><img src={Logo}></img></Link> */}
                   <ul id="nav-mobile" className="left">
                     <li data-target="slide-out" className="sidenav-trigger"><Icon>dehaze</Icon></li>
-                    <a href="#" className="brand-logo center">I <img src={Logo} alt=""></img> Jampa</a>
+                    <span className="brand-logo center">I <img src={Logo} alt=""></img> Jampa</span>
                   </ul>
                 </div>
               </nav>}

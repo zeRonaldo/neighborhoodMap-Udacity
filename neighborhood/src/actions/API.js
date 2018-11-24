@@ -9,10 +9,10 @@ export async function  getAllPlaces() {
     let all = []
    await getAllBars().then( result => {
         result.map( place => {
-            all= [...all, {
+           return all = [...all, {
                 id: place.venue.id,
                 name: place.venue.name,
-                category: 'bars',
+                category: ['bars'],
                 locationTxt: place.venue.location.address,
                 neighborhood: place.venue.location.neighborhood,
                 location:{
@@ -24,10 +24,10 @@ export async function  getAllPlaces() {
       });
     await getAllRestaurant().then( result => {
         result.map( place => {
-            all= [...all, {
+            return all= [...all, {
                 id: place.venue.id,
                 name: place.venue.name,
-                category: 'restaurants',
+                category: ['restaurants'],
                 locationTxt: place.venue.location.address,
                 neighborhood: place.venue.location.neighborhood,
                 location:{
@@ -36,13 +36,13 @@ export async function  getAllPlaces() {
                 }
             }];
         })      
-      });;
+      });
     await getAllLandscape().then( result => {
         result.map( place => {
-            all= [...all, {
+            return all= [...all, {
                 id: place.venue.id,
                 name: place.venue.name,
-                category: 'landscapes',
+                category: ['landscapes'],
                 locationTxt: place.venue.location.address,
                 neighborhood: place.venue.location.neighborhood,
                 location:{
@@ -51,8 +51,9 @@ export async function  getAllPlaces() {
                 }
             }];
         })      
-      });;
-   
+      });
+      
+      all = addToAll(all);
     
     return all;
 }
@@ -80,11 +81,20 @@ export const getAllLandscape = () =>
 
 export const addToAll = (results) =>{
     let list= [];
-    console.log(results);
-    results.forEach(result => {
-        result.map(place => {
-            list.push(place);
+    results.forEach(place => {
+        if(list.length > 0){
+            let onList = list.findIndex( item => item.id === place.id);
+            if(onList !== -1){
+                list[onList].category.push(place.category);
+            }else{
+                return list.push(place);
+            }
+            
+        }else{
+            return list.push(place)
+        }
+            
         })
-    });
+   
     return list;
 }

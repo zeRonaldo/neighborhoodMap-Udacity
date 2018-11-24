@@ -4,10 +4,25 @@ import SideNavMenu from './templates/SideNavMenu';
 import MapView from './templates/MapView';
 import {getAllPlaces} from './actions/API';
 import escapeRegExp from 'escape-string-regexp';
-import SortBy from 'sort-by';
+
+
+const LoadingScreen = (props) => {
+  return <div className="loading-screen">
+            <div class="container loader1">
+              <div class="item"></div>
+              <div class="item"></div>
+              <div class="item"></div>
+              <div class="item"></div>
+            </div>
+            <div className="wrapper">
+              <h2>Carregando as localizações</h2>
+            </div>
+          </div>
+}
 
 class App extends Component {
   state = {
+    loading: true,
     places: [
       
     ],
@@ -19,13 +34,16 @@ class App extends Component {
   }
   async componentDidMount(){
     await getAllPlaces().then( result => {
-      result.map( place => {
         this.setState({
-          places: [...this.state.places, place],
-          shownPlaces: [...this.state.places, place]
-        })
-      })  
-    }).catch( (e) => {
+          places: result,
+          shownPlaces: result
+        }) 
+    }).then(
+        setInterval(this.setState({
+          loading: false
+        }), 10000)
+    ).catch( (e) => {
+      console.log("oops")
       console.log(e);
     })
   }
@@ -36,7 +54,7 @@ class App extends Component {
         this.resetPlaces()
       }else{
         this.setState({
-          shownPlaces: this.state.shownPlaces.filter(place => place.category === category)
+          shownPlaces: this.state.shownPlaces.filter(place => place.category.includes(category))
         })
       }
     }else{
@@ -44,7 +62,7 @@ class App extends Component {
         this.resetPlaces()
       }else{
         this.setState({
-          shownPlaces: this.state.places.filter(place => place.category === category)
+          shownPlaces: this.state.places.filter(place => place.category.includes(category))
         })
       }
     }
@@ -74,17 +92,25 @@ class App extends Component {
     });
   }
   render() {
+    const {error, shownPlaces, query} = this.state;
+    const {filterPlaceByCategory, searchPlaceByName} = this;
+
+    
     return (
-      <div className="App">
-        <SideNavMenu places={this.state.shownPlaces} filterCategory={this.filterPlaceByCategory} searchPlace={this.searchPlaceByName} query={this.state.query}></SideNavMenu>
-        <MapView places={this.state.shownPlaces} isMarkerShown></MapView>
-        {this.state.error ?
-          (
-            <div>{this.state.errorMsg}</div>
-          )
-          :(<div></div>)}
-      </div>
-    );
+        
+        <div className="App">
+          {error ? (
+           
+            <LoadingScreen></LoadingScreen>
+          ):(
+            <div>
+              <SideNavMenu places={shownPlaces} filterCategory={filterPlaceByCategory} searchPlace={searchPlaceByName} query={query}></SideNavMenu>
+              <MapView places={shownPlaces} isMarkerShown></MapView>
+            </div>
+          )}
+        </div>
+    
+      );
   }
 }
 
