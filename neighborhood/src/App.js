@@ -4,21 +4,7 @@ import SideNavMenu from './templates/SideNavMenu';
 import MapView from './templates/MapView';
 import {getAllPlaces} from './actions/API';
 import escapeRegExp from 'escape-string-regexp';
-
-
-const LoadingScreen = (props) => {
-  return <div className="loading-screen">
-            <div class="container loader1">
-              <div class="item"></div>
-              <div class="item"></div>
-              <div class="item"></div>
-              <div class="item"></div>
-            </div>
-            <div className="wrapper">
-              <h2>Carregando as localizações</h2>
-            </div>
-          </div>
-}
+import Logo from './res/logo.png';
 
 class App extends Component {
   state = {
@@ -32,19 +18,26 @@ class App extends Component {
     errorMsg: '',
 
   }
+  componentWillMount () {
+    this.setState({
+      loading:true
+    })
+  }
   async componentDidMount(){
+   
     await getAllPlaces().then( result => {
         this.setState({
           places: result,
           shownPlaces: result
         }) 
     }).then(
-        setInterval(this.setState({
-          loading: false
-        }), 10000)
+      this.setState({
+        loading: false
+      })
     ).catch( (e) => {
-      console.log("oops")
-      console.log(e);
+      this.setState({
+        error: true
+      })
     })
   }
 
@@ -92,22 +85,38 @@ class App extends Component {
     });
   }
   render() {
-    const {error, shownPlaces, query} = this.state;
+    const {error,loading, shownPlaces, query} = this.state;
     const {filterPlaceByCategory, searchPlaceByName} = this;
-
+    let content='';
+    if(loading === true){
+      content = <div className="loading-screen">
+                    <div><img src={Logo} alt="heart logo" className="logo"></img></div>
+                  <div class="container loader1">
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                  </div>
+                  <div className="wrapper">
+                    <h2>Carregando as localizações</h2>
+                  </div>
+                </div>
+    }else{
+      if(error === true){
+        content = <div className='error-screen'><h2>Malditos gremlins da internet!</h2><p>Não foi possível carregar o conteúdo, Tente novamente mais tarde</p></div>
+      }else{
+        content = <div>
+              <SideNavMenu places={shownPlaces} filterCategory={filterPlaceByCategory} searchPlace={searchPlaceByName} query={query}></SideNavMenu>
+              <MapView places={shownPlaces} isMarkerShown></MapView>
+            </div>
+      }
+    }
+    
     
     return (
         
         <div className="App">
-          {error ? (
-           
-            <LoadingScreen></LoadingScreen>
-          ):(
-            <div>
-              <SideNavMenu places={shownPlaces} filterCategory={filterPlaceByCategory} searchPlace={searchPlaceByName} query={query}></SideNavMenu>
-              <MapView places={shownPlaces} isMarkerShown></MapView>
-            </div>
-          )}
+          {content}
         </div>
     
       );

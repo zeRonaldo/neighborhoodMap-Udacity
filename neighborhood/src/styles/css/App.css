@@ -63,7 +63,25 @@ nav .brand-logo.center{
   max-height: 32px;
   margin: 5px;
 }
-
+/*ERROR*/
+.error-screen{
+  background-color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #ccc
+}
+.error-screen h2{
+  font-weight: 200;
+  background-color: #eb5757;
+  padding: 1.8rem;
+  border-radius: 10px
+}
+.error-screen p{
+  font-size: 2rem
+}
 /*LOADER*/
 .loading-screen{
   background: #333;
@@ -73,6 +91,14 @@ nav .brand-logo.center{
     align-items: center;
     justify-content: center;
     color: #ccc;
+}
+.loading-screen .logo{
+  height: 200px;
+  margin-bottom: 30px;
+  animation: float 2s ease-out 0s infinite;
+}
+.loading-screen h2{
+  font-weight: 200
 }
 .item {
   display: inline-block;
@@ -120,5 +146,20 @@ nav .brand-logo.center{
   100% {
     opacity: 1;
     transform: scale(1.1);
+  }
+}
+
+@keyframes float{
+  0%{
+    opacity: 1;
+    
+  }
+  
+  50%{
+    opacity: 0.3;
+  }
+  100%{
+    opacity: 1;
+    
   }
 }
