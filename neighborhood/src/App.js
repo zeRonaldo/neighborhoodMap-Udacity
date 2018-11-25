@@ -13,7 +13,7 @@ class App extends Component {
     shownPlaces: [],
     query: '',
     errorMsg: '',
-    infoWindow: '',
+    infoWindow: 0,
   }
 
    componentDidMount(){
@@ -83,7 +83,8 @@ class App extends Component {
   }
 
   showInfoWindow = (key) => {
-    this.setState({
+    console.log(key)
+    return this.setState({
       infoWindow: key
     })
   }
@@ -111,7 +112,7 @@ class App extends Component {
       }else{
         content = <div>
               <SideNavMenu places={shownPlaces} filterCategory={filterPlaceByCategory} searchPlace={searchPlaceByName} query={query} showInfoWindow={showInfoWindow}></SideNavMenu>
-              <MapView places={shownPlaces} infoOpened={infoWindow} showInfoWindow={showInfoWindow} isMarkerShown></MapView>
+              <MapView places={shownPlaces} infoWindow={infoWindow} showInfoWindow={showInfoWindow} isMarkerShown></MapView>
             </div>
       }
     }

@@ -36,6 +36,7 @@ nav{
   position: fixed;
 z-index: 99;
 }
+
 .nav-wrapper{
   background-color: #333
 }
@@ -62,6 +63,12 @@ nav .brand-logo.center{
 .brand-logo img{
   max-height: 32px;
   margin: 5px;
+}
+.button-menu, .button-menu:hover, .button-menu:focus{
+  background-color: transparent !important;
+  display: flex;
+  border: none;
+  box-shadow: none;
 }
 /*ERROR*/
 .error-screen{

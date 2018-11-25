@@ -1,14 +1,13 @@
-/*global google */
+
 import React from 'react';
 import { compose, withProps } from "recompose";
 import mapStyle from '../styles/mapStyle'
 import {
   withScriptjs,
   withGoogleMap,
-  GoogleMap,
-  Marker
+  GoogleMap
 } from "react-google-maps";
-import MapMarkers from './MapMarkers';
+import MapMarker from './MapMarker';
 
 const MyMapComponent = compose(
   withProps({
@@ -28,18 +27,12 @@ const MyMapComponent = compose(
 )(props => (
   <GoogleMap defaultZoom={13} defaultCenter={{ lat: -7.1494901, lng: -34.885884 }}  defaultOptions={{styles : mapStyle}}>
     {props.isMarkerShown ? (
-      props.places.map( place => {
-            return  <Marker
-            position={place.location }
-            key={place.id}
-            animation={google.maps.Animation.Drop}
-            onClick={() => {
-              console.log(place.photographer)
-              props.showInfoWindow(place.id)}}
-          >
-            <MapMarkers place={place} showInfo={() => props.showInfoWindow} infoOpened={props.infoOpened} ></MapMarkers>
-          </Marker>
-      })
+      props.places.map( place => 
+            (
+              <MapMarker place={place} showInfoWindow={props.showInfoWindow} infoWindow={props.infoWindow} id={place.id} key={place.id}></MapMarker>
+            ) 
+          
+      )
        
     ):(<div></div>)}
   </GoogleMap>
