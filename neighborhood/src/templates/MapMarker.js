@@ -34,7 +34,7 @@ class MapMarker extends Component {
   }
 
   render() {
-    const{  place, id, key } = this.props;
+    const{  place } = this.props;
     const { animationState, isOpen } = this.state;
     
     const marker = 
@@ -42,7 +42,7 @@ class MapMarker extends Component {
             position={place.location}
             key={place.id}
             animation={animationState}
-            onClick={ () => this.clickedOnMarker(id)} >
+            onClick={ () => this.clickedOnMarker(place.id)} >
               {isOpen ? (
                 <InfoWindow onCloseClick={() => this.onToggleOpen()} key={place.id}>
                 <div className="info-window" >
