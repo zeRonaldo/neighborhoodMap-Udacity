@@ -1,10 +1,10 @@
-/*global google*/ 
+
 ///Libs
- import React, {Fragment} from 'react';
+ import React from 'react';
  import PropTypes from 'prop-types';
  import { compose, withStateHandlers } from "recompose";
  import { InfoWindow} from 'react-google-maps';
- import {getPlace} from '../actions/API'
+
  
 const MapMarkers = compose(  
   withStateHandlers(() => ({
@@ -18,11 +18,11 @@ const MapMarkers = compose(
 ( 
    props.infoOpened === props.place.id &&
         <InfoWindow onCloseClick={props.onToggleOpen}>
-                <Fragment>
+                <div className="info-window">
                   <img src={props.place.photo} alt={props.place.name+' - photo by '+props.place.photographer}></img>
-                  <h3>{props.place.name}</h3>
-                  <h5>{props.place.locationTxt} - {props.place.neighborhood}</h5>
-                </Fragment>
+                  <h3 className="name">{props.place.name}</h3>
+                  <h5 className="address">{props.place.locationTxt} <br/>{props.place.neighborhood}</h5>
+                </div>
               </InfoWindow>
    
    
