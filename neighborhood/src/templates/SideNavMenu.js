@@ -16,7 +16,7 @@ const SideNavMenu = compose() ( props =>
             <div className="nav-wrapper z-depth-1">
               <ul id="nav-mobile" className="left">
                 <li data-target="slide-out" className="sidenav-trigger"><Icon>dehaze</Icon></li>
-                <span className="brand-logo center">I <img src={Logo} alt=""></img> Jampa</span>
+                <span className="brand-logo center">I <img src={Logo} alt="logo"></img> Jampa</span>
               </ul>
             </div>
           </nav>}
