@@ -2,7 +2,7 @@
   "name": "neighborhood",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://zeRonaldo.github.io/neighborhoodmap",
+  "homepage": "https://zeronaldo.github.io/neighborhoodMap-Udacity/",
   "dependencies": {
     "escape-string-regexp": "^1.0.5",
     "react": "^16.6.3",
