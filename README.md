@@ -1,9 +1,12 @@
 # NeighborhoodMap-Udacity
 
-this project was created as part of udacity's nanodegree program for Advanced Front-End Developer. this project is part of the last module the second assignment using react.
+This project was created as part of udacity's nanodegree program for Advanced Front-End Developer. this project is part of the last module the second assignment using react.
 
-this project is bootstrapped with node.js(npm) and the create-react app was used as starter point. you're currently accessing a development version, and it is *not* yet built.
+This project is bootstrapped with node.js(npm) and the create-react app was used as starter point. you're currently accessing a development version, and it is *not* yet built.
 
+The project uses two API's so it can deliver it's funcionalities, it uses GoogleMaps Javascript Api to fetch the map and mount the markers, the rest of the information comes from FourSquare Api where it fetches 3 different lists with venues.
+
+**Note: the service-worker used is the default CRA, so it only works correctly after the project is built**
 
 ## TL;DR
 
@@ -43,5 +46,9 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+You can learn more in the [Foursquare API documentation](https://developer.foursquare.com/docs).
+
+You can learn more in the [Google Maps API documentation](https://developers.google.com/maps/documentation/javascript/tutorial).
 
 To learn React, check out the [React documentation](https://reactjs.org/).

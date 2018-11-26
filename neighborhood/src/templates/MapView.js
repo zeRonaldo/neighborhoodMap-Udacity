@@ -29,7 +29,7 @@ const MyMapComponent = compose(
     {props.isMarkerShown ? (
       props.places.map( place => 
             (
-              <MapMarker place={place} showInfoWindow={props.showInfoWindow} infoWindow={props.infoWindow} id={place.id} key={place.id}></MapMarker>
+              <MapMarker place={place} isOpen={props.isOpen} onToggleOpen={props.onToggleOpen} showMarker={props.showMarker} animationState={props.animationState} key={place.id}></MapMarker>
             ) 
           
       )

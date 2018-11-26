@@ -43,7 +43,7 @@ const SideNavMenu = compose() ( props =>
         {/* LIST OF PLACES 
             controlled component that features all the places being shown currently
             */}
-        <ListOfPlaces places={props.places} showInfoWindow={props.showInfoWindow}></ListOfPlaces>
+        <ListOfPlaces places={props.places} onToggleOpen={props.onToggleOpen}></ListOfPlaces>
         
     </SideNav>
 )

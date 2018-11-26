@@ -14,7 +14,20 @@ class App extends Component {
     query: '',
     errorMsg: '',
     infoWindow: 0,
-  }
+    isOpen: false,
+    animationState: 2,
+    showMarker: ''
+    }
+  
+    onToggleOpen = (marker, isOpen) => {
+      let anim = isOpen ? 1 : null;
+    
+      this.setState({
+        showMarker:marker,
+        isOpen: isOpen,
+        animationState: anim
+      })
+    }
 
    componentDidMount(){
    
@@ -90,8 +103,8 @@ class App extends Component {
   }
 
   render() {
-    const {hasError,isLoading, shownPlaces, query, infoWindow} = this.state;
-    const {filterPlaceByCategory, searchPlaceByName,showInfoWindow} = this;
+    const {hasError,isLoading, shownPlaces, query, isOpen, animationState, showMarker} = this.state;
+    const {filterPlaceByCategory, searchPlaceByName,onToggleOpen} = this;
     let content='';
     if(isLoading){
       content = <div className="loading-screen">
@@ -111,8 +124,8 @@ class App extends Component {
         content = <div className='error-screen'><h2>Malditos gremlins da internet!</h2><p>Não foi possível carregar o conteúdo, Tente novamente mais tarde</p></div>
       }else{
         content = <div>
-              <SideNavMenu places={shownPlaces} filterCategory={filterPlaceByCategory} searchPlace={searchPlaceByName} query={query} showInfoWindow={showInfoWindow}></SideNavMenu>
-              <MapView places={shownPlaces} infoWindow={infoWindow} showInfoWindow={showInfoWindow} isMarkerShown></MapView>
+              <SideNavMenu places={shownPlaces} filterCategory={filterPlaceByCategory} searchPlace={searchPlaceByName} query={query} onToggleOpen={onToggleOpen}></SideNavMenu>
+              <MapView places={shownPlaces} onToggleOpen={onToggleOpen} isOpen={isOpen} showMarker={showMarker} animationState={animationState} isMarkerShown></MapView>
             </div>
       }
     }

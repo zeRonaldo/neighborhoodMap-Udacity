@@ -191,3 +191,17 @@ nav .brand-logo.center{
   color: #444;
   margin: 0.2rem
 }
+.info-window .location-font{
+  display: flex;
+  flex-direction: row;
+  align-content: baseline;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  color: #61dafb;
+}
+.location-font img{
+  width: 0.8rem;
+  height: 0.8rem;
+}

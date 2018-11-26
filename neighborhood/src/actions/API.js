@@ -1,6 +1,6 @@
 const api = "https://api.foursquare.com/v2"
-const apiID= "client_id=KYX00UGARA5N45WJOVVQVLTRZA0TEFYBZYTCVMKU5NPYKDNS"
-const apiSecret= "client_secret=1DFUDINGTAYFIPYABZA43RFLO0IGHTO2GA05V5UNSFZWKHPP"
+const apiID= "client_id=LW2JNPOKB1YSLROQ1R0BAVVOHV2VWTJV0WOYYMPEJAAJ4HL3"
+const apiSecret= "client_secret=4GZM2DYX1JUTIEKISTTBWUVTM2MY4GH2WJ2TSIYTYJMW4OM5"
 const headers = {
     'Accept' : 'application/json'
 }
@@ -90,8 +90,10 @@ export const getPlace = (id) =>
     fetch(`${api}/venues/${id}?${apiID}&${apiSecret}&v=20181123`, {headers})
     .then(res => res.json())
     .then(data => {
-        console.log(data.response)
+        let placeDetails = data.response.venue;
+        return placeDetails;
     })
+    
 export const addToAll = (results) =>{
     let list= [];
     results.forEach(place => {
