@@ -1,4 +1,4 @@
-const api = "https://api.foursquare.com/v2"
+const api = "https://cors-anywhere.herokuapp.com/https://api.foursquare.com/v2"
 const apiID= "client_id=LW2JNPOKB1YSLROQ1R0BAVVOHV2VWTJV0WOYYMPEJAAJ4HL3"
 const apiSecret= "client_secret=4GZM2DYX1JUTIEKISTTBWUVTM2MY4GH2WJ2TSIYTYJMW4OM5"
 const headers = {
